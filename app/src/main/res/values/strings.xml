@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">sithumi</string>
+    <string name="backgound">TODO</string>
+    <string name="s23010699">S23010699</string>
+    <string name="profile">TODO</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="backgound2">TODO</string>
+    <string name="enter_address">Enter address</string>
+    <string name="show_location">Show Location</string>
+    <string name="temperature">Temperature </string>
+    <string name="go_to_sensor">Go to Sensor</string>
+    <string name="temperature_will_appear_here">Temperature will appear here</string>
+    <string name="background3">TODO</string>
+
+
+</resources>
