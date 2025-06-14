@@ -15,8 +15,9 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
 
     private SensorManager sensorManager;
     private Sensor tempSensor;
-    private TextView txtTemperature;
+    private TextView txtTemperature, statusText;
     private MediaPlayer mediaPlayer;
+    private boolean hasPlayed = false;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -25,9 +26,9 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
         setContentView(R.layout.activity_main3);
 
         txtTemperature = findViewById(R.id.txtTemperature);
+        statusText = findViewById(R.id.statusText);
 
-
-        mediaPlayer = MediaPlayer.create(this, R.raw.sound);
+        mediaPlayer = MediaPlayer.create(this, R.raw.sound); // Add sound.mp3 under res/raw
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager != null) {
@@ -35,7 +36,8 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
         }
 
         if (tempSensor == null) {
-            txtTemperature.setText("Temperature sensor not available on this device.");
+            txtTemperature.setText("Temperature sensor not available.");
+            statusText.setText("Status: Sensor not supported.");
         }
     }
 
@@ -59,14 +61,20 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
         float temperature = event.values[0];
         txtTemperature.setText("Current Temperature: " + temperature + "°C");
 
+        // use last 2 digits of your SID
         float THRESHOLD = 99f;
-        if (temperature > THRESHOLD && !mediaPlayer.isPlaying()) {
+        if (temperature > THRESHOLD && !hasPlayed) {
             mediaPlayer.start();
+            hasPlayed = true;
+            statusText.setText(" High Temp Detected! Audio played.");
+        } else if (temperature <= THRESHOLD && hasPlayed) {
+            hasPlayed = false;
+            statusText.setText("Temp back to normal.");
         }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Not used
+
     }
 }

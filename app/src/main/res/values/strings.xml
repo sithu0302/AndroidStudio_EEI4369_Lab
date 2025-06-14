@@ -13,6 +13,8 @@
     <string name="go_to_sensor">Go to Sensor</string>
     <string name="temperature_will_appear_here">Temperature will appear here</string>
     <string name="background3">TODO</string>
+    <string name="status_waiting_for_sensor">Status: Waiting for sensor...</string>
+    <string name="current_temperature_c">Current Temperature: -- °C</string>
 
 
 </resources>
